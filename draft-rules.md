@@ -113,7 +113,7 @@ git commit -m "fix: align monetary values in sales table"
 - **No Backend Required** - All data stored in browser's localStorage (frontend-only)
 - **Single Location** - System designed for one restaurant/store location
 - **Fixed Tax Rate** - 10% tax applied to all orders
-- **USD Currency** - All pricing in US dollars
+- **JOD Currency** - All pricing in Jordanian Dinars
 - **No Authentication** - Open system without user login (as per requirements)
 - **Mock Data** - Restaurant menu is pre-populated with sample items
 - **Modern Browsers** - Assumes ES6+ support and localStorage availability
@@ -284,4 +284,3 @@ Clean, logical data structures with TypeScript interfaces for:
 - **Order Sidebar**: Fixed 384px width on desktop
 - **Full-height layout**: Maximizes vertical space
 - **Touch targets**: Minimum 44px for buttons and interactive elements
-

@@ -21,16 +21,6 @@ pnpm dev
 # 3. Open browser at http://localhost:5173
 ```
 
-### Build & Lint
-
-```bash
-# Build for production
-pnpm build
-
-# Check code quality
-pnpm lint
-```
-
 ## ✨ Features
 
 - Menu browsing with categories and search
@@ -42,7 +32,15 @@ pnpm lint
 - Real-time revenue stats
 - Data persists in localStorage
 
-## 📋 Key Decisions & Approach
+## 📋 Key Assumptions
+
+- Frontend-only (localStorage, no backend/database)
+- Single restaurant location
+- Fixed 10% tax, JOD currency
+- No user authentication required
+- Mock menu data with pre-populated items
+
+## 🎯 Key Decisions & Approach
 
 **Tech Stack**
 
@@ -57,7 +55,7 @@ pnpm lint
 - Touch-first design (44px minimum touch targets)
 - State-first architecture (Active → Draft → Completed)
 - No authentication (as per requirements)
-- Fixed 10% tax rate, USD currency
+- Fixed 10% tax rate, JOD currency
 - Mock menu data, single location design
 
 **Performance**
@@ -66,8 +64,10 @@ pnpm lint
 - Optimized re-renders with Context API
 - Client-side filtering for instant feedback
 
+## 📚 Documentation
+
+- **[Development Guidelines](draft-rules.md)** - Git workflow, architecture decisions, and development guidelines
+
 ---
 
 **Project Type:** Frontend-only demonstration for Celtis Australis technical assessment
-
-For detailed Git workflow, architecture decisions, and development guidelines, see [`draft-rules.md`](draft-rules.md).
