@@ -97,7 +97,6 @@ Possible areas to explore:
 
 You may use **any tools or frameworks** you’re comfortable with.
 
-- React and TanStack are encouraged, but **not required**
 - Choose what helps you work efficiently
 - Focus on clearly demonstrating UI and product thinking
 
@@ -135,27 +134,6 @@ Strong submissions often demonstrate clear product thinking, such as:
 - Showing empathy for **real store workflows**, not just visual polish
 
 ---
-
-## Time Expectations
-
-Please **do not treat this as a full-time assignment**.
-
-- Expected effort: **a few focused hours**
-- Deadline: **up to 5 days**
-- Work at a comfortable pace around your commitments
-
-> Spending more time does **not** increase your chances.  
-> **Clarity and intent matter more than scope.**
-
----
-
-## Submission Guidelines
-
-Please reply to the email with:
-
-- A link to a **public GitHub repository**
-- A **live demo link**
-- Any additional notes or documents you feel are relevant
 
 ### Repository Requirements
 

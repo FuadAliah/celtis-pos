@@ -1,0 +1,292 @@
+# POS System - Cursor AI Rules and Guidelines
+
+## Project Overview
+
+This is a **frontend-only Point of Sale (POS) interface** focused on:
+- User flow design
+- UX quality
+- UI clarity
+
+**Core Philosophy**: Quality over quantity. A small number of well-thought-out, integrated features is preferred over a long list of partially implemented ones.
+
+**What matters most**: How you think, not how much you build. Clarity and intent matter more than scope.
+
+---
+
+## Tech Stack Constraints
+
+### Required Technologies
+- **React** + **TypeScript** + **Vite** (current setup)
+- **Tailwind CSS** for styling (no custom CSS files unless absolutely necessary)
+- **Context API** for state management
+- **Local Storage** for data persistence
+
+### Strictly Prohibited
+- ❌ NO backend
+- ❌ NO database
+- ❌ NO authentication
+- ❌ NO TanStack Query
+- ❌ NO TanStack Router
+- ❌ NO external API calls
+
+### Data Persistence
+- Use **localStorage** for all data persistence
+- Mock data is acceptable and encouraged
+- Handle page refresh scenarios gracefully
+
+---
+
+## Design Guidelines
+
+### Color Scheme
+- Use **Orange ShadCN color schema** as the primary color palette
+- Ensure sufficient contrast for readability
+- Consider all-day usage ergonomics
+
+### Style Direction
+- **Modern POS interface** design
+- Focus on **readability and calm interface**
+- Design for someone using it all day in a real store
+
+### UI Details That Matter
+Pay careful attention to:
+- Font choice (readable, professional)
+- Sizing (appropriate for touch/click interactions)
+- Spacing (generous, not cramped)
+- Alignment (consistent, clean)
+- Information hierarchy (clear visual priority)
+
+### Component Design
+- Use Tailwind utility classes exclusively
+- Avoid creating custom CSS files
+- Follow ShadCN design patterns where applicable
+- Ensure components are responsive and accessible
+
+---
+
+## Architecture Principles
+
+### State Management
+- Think in terms of **sale states**, not just screens
+- Use React Context API for global state
+- Keep state management simple and predictable
+- Design a clean internal data model (even if fully mocked)
+
+### User Experience Priorities
+- **Cashier ergonomics**:
+  - Minimize click count
+  - Support keyboard hotkeys where appropriate
+  - Optimize flow speed
+- **Real-world scenario handling**:
+  - Page refresh recovery
+  - Accidental navigation prevention
+  - Crash/interrupted flow recovery
+  - Draft/parked sales preservation
+
+### Code Organization
+- Use functional components with hooks
+- Keep components focused and reusable
+- Follow React best practices
+- Use TypeScript strictly (no `any` types unless absolutely necessary)
+- Organize code by feature/domain, not by file type
+
+---
+
+## Core Features to Implement
+
+### Primary Features (MVP)
+1. **Add items to cart** - Product selection and cart management
+2. **Calculate totals** - Automatic price calculations, taxes, discounts
+3. **Complete a sale** - Finalize transaction and generate receipt
+4. **View sales history** - List of completed transactions
+
+### Extended Features
+5. **Draft/parked sales** - Save incomplete sales for later
+6. **Quotes with lifecycle** - Create, modify, convert quotes to sales
+7. **Refunds as states** - Handle refunds as transaction states
+8. **Basic sales history and filtering** - Search and filter past sales
+9. **Delivery concepts** - Track delivery information
+10. **Simple reporting** - Basic sales reports and analytics
+11. **Staff or session concepts** - Track staff members and sessions
+
+**Note**: Implement features thoughtfully and completely. It's better to have fewer, well-integrated features than many partial ones.
+
+---
+
+## Data Model Entities
+
+Design and implement the following core entities:
+
+### Products
+- Product information (name, price, SKU, etc.)
+- Inventory tracking (if applicable)
+- Categories and tags
+
+### Sales
+- Transaction records
+- Line items
+- Totals and taxes
+- Payment information
+- Timestamps
+
+### Cart
+- Current active cart
+- Items and quantities
+- Applied discounts
+- Subtotal, tax, total
+
+### Quotes
+- Quote creation and management
+- Quote-to-sale conversion
+- Quote lifecycle states
+
+### Refunds
+- Refund records
+- Linked to original sales
+- Refund states and processing
+
+### Staff/Sessions
+- Staff member tracking
+- Session management
+- Activity logging
+
+### Delivery
+- Delivery information
+- Address and contact details
+- Delivery status tracking
+
+**Data Model Principles**:
+- Design clean, logical data structures
+- Even if mocked, the data model should make sense
+- Consider relationships between entities
+- Use TypeScript interfaces/types for all data structures
+
+---
+
+## Code Style Guidelines
+
+### TypeScript
+- Use strict TypeScript
+- Define interfaces/types for all data structures
+- Avoid `any` type
+- Use proper type inference where possible
+- Export types/interfaces from dedicated files
+
+### React Patterns
+- Prefer functional components
+- Use hooks for state and side effects
+- Keep components small and focused
+- Extract reusable logic into custom hooks
+- Use proper prop types with TypeScript
+
+### Component Structure
+```typescript
+// Preferred component structure
+interface ComponentProps {
+  // Define props
+}
+
+export function Component({ prop1, prop2 }: ComponentProps) {
+  // Hooks
+  // State
+  // Effects
+  // Handlers
+  // Render
+}
+```
+
+### File Naming
+- Use PascalCase for components: `CartItem.tsx`
+- Use camelCase for utilities: `formatCurrency.ts`
+- Use kebab-case for types: `sales-types.ts`
+
+### Tailwind CSS
+- Use utility classes exclusively
+- Avoid inline styles
+- Use Tailwind's design tokens (spacing, colors, etc.)
+- Group related classes logically
+- Use Tailwind's responsive prefixes when needed
+
+---
+
+## UI/UX Priorities
+
+### User Journey
+- Design flows that connect logically
+- Minimize steps to complete common tasks
+- Provide clear navigation and feedback
+- Handle edge cases gracefully
+
+### Data Layout
+- Present information clearly and hierarchically
+- Use appropriate visual grouping
+- Ensure important information is prominent
+- Support scanning and quick comprehension
+
+### Interface Feel
+- Create a **readable and calm** interface
+- Avoid visual clutter
+- Use whitespace effectively
+- Ensure consistent visual language
+
+### Real Store Workflow Empathy
+- Consider actual cashier workflows
+- Support common POS operations efficiently
+- Handle interruptions and errors gracefully
+- Design for speed and accuracy
+
+---
+
+## Development Workflow
+
+### When Adding Features
+1. **Think first**: Consider the user journey and state management
+2. **Design the data model**: Even if mocked, design it properly
+3. **Build incrementally**: Start small, then expand
+4. **Test user flows**: Ensure flows work end-to-end
+5. **Handle edge cases**: Page refresh, navigation, errors
+
+### When Writing Code
+- Write clear, readable code
+- Add comments for complex logic
+- Keep functions focused and small
+- Use meaningful variable and function names
+- Follow React and TypeScript best practices
+
+### When Designing UI
+- Prioritize clarity over cleverness
+- Test with real-world scenarios
+- Consider all-day usage
+- Ensure accessibility
+- Use consistent patterns
+
+---
+
+## Key Reminders
+
+1. **This is NOT a full-stack task** - Frontend only
+2. **Quality over quantity** - Well-thought-out features win
+3. **Think in states** - Not just screens
+4. **Empathize with users** - Real store workflows matter
+5. **Handle real-world scenarios** - Page refresh, crashes, interruptions
+6. **Use local storage** - For all persistence needs
+7. **Keep it simple** - Context API, no complex state management libraries
+8. **Modern POS design** - Orange ShadCN schema, clean and professional
+9. **TypeScript strictly** - Proper types for everything
+10. **Tailwind only** - No custom CSS files
+
+---
+
+## Questions to Consider When Building
+
+- How does this feature fit into the overall user journey?
+- What state does this affect?
+- How will this handle page refresh?
+- Is this the simplest solution that works?
+- Does this improve the cashier's workflow?
+- Is the UI clear and calm?
+- Can this be reused or extended later?
+
+---
+
+**Remember**: We are not looking for perfection. We are looking for **good judgment**.
