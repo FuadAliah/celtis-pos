@@ -3,290 +3,408 @@
 ## Project Overview
 
 This is a **frontend-only Point of Sale (POS) interface** focused on:
-- User flow design
-- UX quality
-- UI clarity
 
-**Core Philosophy**: Quality over quantity. A small number of well-thought-out, integrated features is preferred over a long list of partially implemented ones.
+- User flow design and UX quality
+- Clean, maintainable code architecture
+- Real-world cashier ergonomics
 
-**What matters most**: How you think, not how much you build. Clarity and intent matter more than scope.
+**Core Philosophy**: Quality over quantity. Build fewer, well-integrated features rather than many partial implementations.
+
+**What matters most**: Clear thinking, good judgment, and code clarity over scope.
 
 ---
 
-## Tech Stack Constraints
+## Tech Stack & Constraints
 
 ### Required Technologies
-- **React** + **TypeScript** + **Vite** (current setup)
-- **Tailwind CSS** for styling (no custom CSS files unless absolutely necessary)
+
+- **React 19** + **TypeScript** + **Vite**
+- **Tailwind CSS** for styling (no custom CSS files)
 - **Context API** for state management
-- **Local Storage** for data persistence
+- **localStorage** for data persistence
 
 ### Strictly Prohibited
-- ❌ NO backend
-- ❌ NO database
-- ❌ NO authentication
-- ❌ NO TanStack Query
-- ❌ NO TanStack Router
+
+- ❌ NO backend or server-side code
+- ❌ NO database connections
+- ❌ NO authentication systems
+- ❌ NO TanStack Query, TanStack Router, or similar libraries
 - ❌ NO external API calls
+- ❌ NO custom CSS files (Tailwind only)
 
-### Data Persistence
-- Use **localStorage** for all data persistence
-- Mock data is acceptable and encouraged
-- Handle page refresh scenarios gracefully
+### Currency & Locale
 
----
+- All monetary values in **JOD (Jordanian Dinar)**
+- Use `en-JO` locale for number formatting
+- Tax rate: **10%** (fixed)
+- Use `Intl.NumberFormat` for currency formatting
 
-## Design Guidelines
+### Deployment
 
-### Color Scheme
-- Use **Orange ShadCN color schema** as the primary color palette
-- Ensure sufficient contrast for readability
-- Consider all-day usage ergonomics
-
-### Style Direction
-- **Modern POS interface** design
-- Focus on **readability and calm interface**
-- Design for someone using it all day in a real store
-
-### UI Details That Matter
-Pay careful attention to:
-- Font choice (readable, professional)
-- Sizing (appropriate for touch/click interactions)
-- Spacing (generous, not cramped)
-- Alignment (consistent, clean)
-- Information hierarchy (clear visual priority)
-
-### Component Design
-- Use Tailwind utility classes exclusively
-- Avoid creating custom CSS files
-- Follow ShadCN design patterns where applicable
-- Ensure components are responsive and accessible
+- App deploys to GitHub Pages
+- Base path: `/celtis-pos/`
+- Configure Vite with `base: "/celtis-pos/"`
+- Handle client-side routing with 404.html redirect
 
 ---
 
 ## Architecture Principles
 
 ### State Management
-- Think in terms of **sale states**, not just screens
-- Use React Context API for global state
+
+- Use **React Context API** exclusively
+- Think in terms of **states**, not just screens
 - Keep state management simple and predictable
-- Design a clean internal data model (even if fully mocked)
+- Design clean data models (even if mocked)
+- State structure: Orders → Draft → Completed → History
+- Automatic localStorage sync on every state change
 
-### User Experience Priorities
-- **Cashier ergonomics**:
-  - Minimize click count
-  - Support keyboard hotkeys where appropriate
-  - Optimize flow speed
-- **Real-world scenario handling**:
-  - Page refresh recovery
-  - Accidental navigation prevention
-  - Crash/interrupted flow recovery
-  - Draft/parked sales preservation
+### Data Persistence
 
-### Code Organization
-- Use functional components with hooks
-- Keep components focused and reusable
-- Follow React best practices
-- Use TypeScript strictly (no `any` types unless absolutely necessary)
-- Organize code by feature/domain, not by file type
+- Use **localStorage** for ALL data persistence
+- Mock data is acceptable and encouraged
+- Handle page refresh scenarios gracefully
+- Persist drafts, sales history, and configuration
+- Never lose user data on refresh
 
----
+### Component Architecture
 
-## Core Features to Implement
+- **Feature-based organization** (Restaurant/, History/, Layout/)
+- Reusable UI primitives in `components/ui/`
+- Smart containers separate from presentational components
+- All data structures defined with TypeScript interfaces
 
-### Primary Features (MVP)
-1. **Add items to cart** - Product selection and cart management
-2. **Calculate totals** - Automatic price calculations, taxes, discounts
-3. **Complete a sale** - Finalize transaction and generate receipt
-4. **View sales history** - List of completed transactions
+### Data Model Principles
 
-### Extended Features
-5. **Draft/parked sales** - Save incomplete sales for later
-6. **Quotes with lifecycle** - Create, modify, convert quotes to sales
-7. **Refunds as states** - Handle refunds as transaction states
-8. **Basic sales history and filtering** - Search and filter past sales
-9. **Delivery concepts** - Track delivery information
-10. **Simple reporting** - Basic sales reports and analytics
-11. **Staff or session concepts** - Track staff members and sessions
-
-**Note**: Implement features thoughtfully and completely. It's better to have fewer, well-integrated features than many partial ones.
-
----
-
-## Data Model Entities
-
-Design and implement the following core entities:
-
-### Products
-- Product information (name, price, SKU, etc.)
-- Inventory tracking (if applicable)
-- Categories and tags
-
-### Sales
-- Transaction records
-- Line items
-- Totals and taxes
-- Payment information
-- Timestamps
-
-### Cart
-- Current active cart
-- Items and quantities
-- Applied discounts
-- Subtotal, tax, total
-
-### Quotes
-- Quote creation and management
-- Quote-to-sale conversion
-- Quote lifecycle states
-
-### Refunds
-- Refund records
-- Linked to original sales
-- Refund states and processing
-
-### Staff/Sessions
-- Staff member tracking
-- Session management
-- Activity logging
-
-### Delivery
-- Delivery information
-- Address and contact details
-- Delivery status tracking
-
-**Data Model Principles**:
 - Design clean, logical data structures
-- Even if mocked, the data model should make sense
-- Consider relationships between entities
-- Use TypeScript interfaces/types for all data structures
+- Even if mocked, models should make sense
+- Consider entity relationships clearly
+- Use TypeScript interfaces for ALL data structures
+- Export types from dedicated files (`types/index.ts`)
 
 ---
 
-## Code Style Guidelines
+## Code Standards & Conventions
 
-### TypeScript
-- Use strict TypeScript
-- Define interfaces/types for all data structures
-- Avoid `any` type
-- Use proper type inference where possible
-- Export types/interfaces from dedicated files
+### TypeScript Rules
+
+- **Strict mode** - always enabled
+- **NO `any` types** (use `unknown` if necessary)
+- Define interfaces for all data structures
+- Use proper type inference
+- Export types from dedicated files
+- All props must be typed
 
 ### React Patterns
-- Prefer functional components
-- Use hooks for state and side effects
-- Keep components small and focused
-- Extract reusable logic into custom hooks
-- Use proper prop types with TypeScript
 
-### Component Structure
+- **Functional components only** - no class components
+- Use **hooks** for state and side effects
+- Keep components small and focused (< 150 lines)
+- Extract reusable logic into custom hooks
+- Follow React best practices
+- Use proper prop destructuring
+
+### Component Structure Template
+
 ```typescript
-// Preferred component structure
+// Standard component structure
 interface ComponentProps {
-  // Define props
+  // Define all props with types
 }
 
 export function Component({ prop1, prop2 }: ComponentProps) {
-  // Hooks
-  // State
-  // Effects
-  // Handlers
-  // Render
+  // 1. Hooks (useState, useContext, etc.)
+  // 2. Derived state
+  // 3. Effects (useEffect)
+  // 4. Event handlers
+  // 5. Render
 }
 ```
 
-### File Naming
-- Use PascalCase for components: `CartItem.tsx`
-- Use camelCase for utilities: `formatCurrency.ts`
-- Use kebab-case for types: `sales-types.ts`
+### File Naming Conventions
 
-### Tailwind CSS
-- Use utility classes exclusively
-- Avoid inline styles
-- Use Tailwind's design tokens (spacing, colors, etc.)
-- Group related classes logically
-- Use Tailwind's responsive prefixes when needed
+- Components: **PascalCase** (`CartItem.tsx`, `OrderSidebar.tsx`)
+- Utilities: **camelCase** (`formatCurrency.ts`, `helpers.ts`)
+- Types: **kebab-case** (`sales-types.ts`, `order-types.ts`)
+- Hooks: **camelCase** with `use` prefix (`useRestaurant.ts`)
+
+### Code Organization
+
+- Organize by **feature/domain**, not by file type
+- Keep related files close together
+- One component per file
+- Colocate tests with components (when applicable)
 
 ---
 
-## UI/UX Priorities
+## Git Workflow & Team Standards
+
+### Branch Structure
+
+- **`main`** - Production (protected, auto-updated from `stg`)
+- **`stg`** - Staging for pre-production testing
+- **`dev`** - Development integration branch
+- **`feature/*`** - Feature branches
+
+### Branching Workflow
+
+1. Always branch from `dev`
+2. Use format: `feature/descriptive-name`
+3. Create PR to `dev` when ready
+4. CI checks must pass before merge
+5. Get code review before merging
+6. Delete feature branch after merge
+
+### Commit Message Convention
+
+Use [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `docs:` - Documentation changes
+- `style:` - UI/styling changes (not code style)
+- `refactor:` - Code refactoring without behavior change
+- `perf:` - Performance improvements
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks, config changes
+
+**Format**: `type: short description`
+
+**Examples**:
+
+```bash
+feat: add Inter font for better readability
+fix: correct currency formatting for JOD
+docs: update README with deployment instructions
+style: increase touch targets to 44px
+refactor: extract order calculation logic to hook
+```
+
+### Git Commands
+
+```bash
+# Start new feature
+git checkout dev
+git pull origin dev
+git checkout -b feature/your-feature-name
+
+# Commit changes
+git add .
+git commit -m "feat: description"
+git push -u origin feature/your-feature-name
+
+# Create PR to dev, get review, merge
+```
+
+---
+
+## CI/CD Requirements
+
+### Pre-Merge Checks
+
+All Pull Requests must pass:
+
+- ✅ **ESLint** with max-warnings=0
+- ✅ **TypeScript compilation** (tsc)
+- ✅ **Production build** (pnpm build)
+
+### Automated Workflows
+
+- PRs to `dev` or `stg` → Run CI checks
+- Push to `stg` → Run CI + Auto-merge to `main`
+- Push to `main` → Deploy to GitHub Pages
+
+### Quality Gates
+
+- No linting errors or warnings
+- No TypeScript errors
+- Build must succeed
+- All checks must be green before merge
+
+---
+
+## UI/UX Standards
+
+### Design Principles
+
+- **Touch-first design** - 44px minimum touch targets
+- **Visual hierarchy** - Clear typography scale (Inter font)
+- **Consistent spacing** - Use scale: p-3, p-4, p-5, p-6
+- **Calm interface** - Designed for all-day use
+- **Responsive feedback** - Hover states, transitions
+
+### Color Scheme
+
+- **Primary**: Orange (ShadCN color schema)
+- **Neutrals**: Grays for text and backgrounds
+- **Semantic**: Green (success), Red (errors)
+- Ensure sufficient contrast for readability
+
+### Typography
+
+- **Font**: Inter (import from Google Fonts)
+- **Hierarchy**: text-sm, text-base, text-lg, text-xl, text-2xl, text-3xl
+- **Weights**: normal (400), medium (500), semibold (600), bold (700), extrabold (800)
+- Use extrabold for prices and critical info
+
+### Tailwind CSS Rules
+
+- Use **utility classes exclusively**
+- No inline styles
+- Group related classes logically
+- Use Tailwind design tokens (spacing, colors)
+- Use responsive prefixes when needed
+- Follow spacing scale: dense (p-3), standard (p-4), comfortable (p-6)
+
+### Component Design
+
+- Follow ShadCN design patterns
+- Ensure components are responsive
+- Add proper hover and focus states
+- Make interactive elements accessible
+- Minimum 44px for clickable areas
+
+---
+
+## User Experience Priorities
+
+### Cashier Ergonomics
+
+- Minimize click count for common tasks
+- Optimize flow speed
+- Support keyboard shortcuts where appropriate
+- Design for speed and accuracy
+
+### Real-World Scenarios
+
+Must handle:
+
+- **Page refresh** - No data loss
+- **Interrupted flows** - Save drafts
+- **Accidental navigation** - Confirm before losing work
+- **Error recovery** - Clear error messages
 
 ### User Journey
+
 - Design flows that connect logically
-- Minimize steps to complete common tasks
+- Minimize steps to complete tasks
 - Provide clear navigation and feedback
 - Handle edge cases gracefully
 
-### Data Layout
-- Present information clearly and hierarchically
+### Data Presentation
+
+- Present information hierarchically
 - Use appropriate visual grouping
-- Ensure important information is prominent
-- Support scanning and quick comprehension
-
-### Interface Feel
-- Create a **readable and calm** interface
-- Avoid visual clutter
-- Use whitespace effectively
-- Ensure consistent visual language
-
-### Real Store Workflow Empathy
-- Consider actual cashier workflows
-- Support common POS operations efficiently
-- Handle interruptions and errors gracefully
-- Design for speed and accuracy
+- Make important info prominent
+- Support quick scanning
 
 ---
 
 ## Development Workflow
 
-### When Adding Features
-1. **Think first**: Consider the user journey and state management
-2. **Design the data model**: Even if mocked, design it properly
-3. **Build incrementally**: Start small, then expand
-4. **Test user flows**: Ensure flows work end-to-end
-5. **Handle edge cases**: Page refresh, navigation, errors
+### Before Writing Code
+
+1. Understand the user journey
+2. Consider state management impact
+3. Design data structures (even if mocked)
+4. Think about error cases
+5. Plan for page refresh scenarios
 
 ### When Writing Code
+
 - Write clear, readable code
 - Add comments for complex logic
-- Keep functions focused and small
-- Use meaningful variable and function names
-- Follow React and TypeScript best practices
+- Keep functions small and focused
+- Use meaningful names (variables, functions, components)
+- Follow TypeScript and React best practices
+- Test manually in browser
 
 ### When Designing UI
+
 - Prioritize clarity over cleverness
 - Test with real-world scenarios
 - Consider all-day usage
 - Ensure accessibility
 - Use consistent patterns
+- Follow the design system
+
+### Testing Checklist
+
+- [ ] Feature works as expected
+- [ ] No console errors or warnings
+- [ ] Data persists after page refresh
+- [ ] Works on different screen sizes
+- [ ] Touch targets are 44px minimum
+- [ ] Loading states handled
+- [ ] Error states handled
+- [ ] Accessible (keyboard navigation)
+
+---
+
+## Quality Checklist
+
+### Code Quality
+
+- [ ] TypeScript strict mode compliant
+- [ ] No `any` types used
+- [ ] All props and state typed
+- [ ] ESLint passes with 0 warnings
+- [ ] Code is readable and well-structured
+- [ ] Complex logic has comments
+
+### Component Quality
+
+- [ ] Component is focused (single responsibility)
+- [ ] Proper prop typing with interfaces
+- [ ] Follows naming conventions
+- [ ] Uses Tailwind exclusively
+- [ ] Responsive design
+- [ ] Proper state management
+
+### UX Quality
+
+- [ ] Clear visual hierarchy
+- [ ] Appropriate spacing
+- [ ] Touch targets ≥ 44px
+- [ ] Hover and focus states
+- [ ] Loading and error states
+- [ ] Data persists on refresh
+
+### Performance
+
+- [ ] Minimal re-renders
+- [ ] No unnecessary useEffect
+- [ ] Efficient context usage
+- [ ] Small bundle size additions
 
 ---
 
 ## Key Reminders
 
-1. **This is NOT a full-stack task** - Frontend only
-2. **Quality over quantity** - Well-thought-out features win
+1. **Frontend only** - No backend, database, or auth
+2. **Quality over quantity** - Fewer, complete features
 3. **Think in states** - Not just screens
-4. **Empathize with users** - Real store workflows matter
-5. **Handle real-world scenarios** - Page refresh, crashes, interruptions
-6. **Use local storage** - For all persistence needs
-7. **Keep it simple** - Context API, no complex state management libraries
-8. **Modern POS design** - Orange ShadCN schema, clean and professional
-9. **TypeScript strictly** - Proper types for everything
-10. **Tailwind only** - No custom CSS files
+4. **localStorage** - All persistence needs
+5. **Context API** - No external state libraries
+6. **Tailwind only** - No custom CSS files
+7. **TypeScript strict** - No `any` types
+8. **Touch-first** - 44px minimum targets
+9. **Page refresh** - Must not lose data
+10. **CI/CD** - All checks must pass
 
 ---
 
-## Questions to Consider When Building
+## Questions to Ask When Building
 
-- How does this feature fit into the overall user journey?
+- How does this fit the user journey?
 - What state does this affect?
 - How will this handle page refresh?
-- Is this the simplest solution that works?
-- Does this improve the cashier's workflow?
+- Is this the simplest solution?
+- Does this improve workflow?
 - Is the UI clear and calm?
-- Can this be reused or extended later?
+- Can this be reused or extended?
+- Does this pass all quality checks?
 
 ---
 
-**Remember**: We are not looking for perfection. We are looking for **good judgment**.
+**Remember**: We're building for real users in real stores. Empathy, clarity, and good judgment matter more than clever code.
