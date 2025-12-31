@@ -32,7 +32,15 @@ pnpm dev
 - Real-time revenue stats
 - Data persists in localStorage
 
-## 📋 Key Decisions & Approach
+## 📋 Key Assumptions
+
+- Frontend-only (localStorage, no backend/database)
+- Single restaurant location
+- Fixed 10% tax, JOD currency
+- No user authentication required
+- Mock menu data with pre-populated items
+
+## 🎯 Key Decisions & Approach
 
 **Tech Stack**
 
