@@ -64,8 +64,10 @@ pnpm dev
 - Optimized re-renders with Context API
 - Client-side filtering for instant feedback
 
+## 📚 Documentation
+
+- **[Development Guidelines](draft-rules.md)** - Git workflow, architecture decisions, and development guidelines
+
 ---
 
 **Project Type:** Frontend-only demonstration for Celtis Australis technical assessment
-
-For detailed Git workflow, architecture decisions, and development guidelines, see [`draft-rules.md`](draft-rules.md).

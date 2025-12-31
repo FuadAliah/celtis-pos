@@ -3,6 +3,7 @@
 ## Project Overview
 
 This is a **frontend-only Point of Sale (POS) interface** focused on:
+
 - User flow design and UX quality
 - Clean, maintainable code architecture
 - Real-world cashier ergonomics
@@ -16,12 +17,14 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 ## Tech Stack & Constraints
 
 ### Required Technologies
+
 - **React 19** + **TypeScript** + **Vite**
 - **Tailwind CSS** for styling (no custom CSS files)
 - **Context API** for state management
 - **localStorage** for data persistence
 
 ### Strictly Prohibited
+
 - ❌ NO backend or server-side code
 - ❌ NO database connections
 - ❌ NO authentication systems
@@ -30,12 +33,14 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 - ❌ NO custom CSS files (Tailwind only)
 
 ### Currency & Locale
+
 - All monetary values in **JOD (Jordanian Dinar)**
 - Use `en-JO` locale for number formatting
 - Tax rate: **10%** (fixed)
 - Use `Intl.NumberFormat` for currency formatting
 
 ### Deployment
+
 - App deploys to GitHub Pages
 - Base path: `/celtis-pos/`
 - Configure Vite with `base: "/celtis-pos/"`
@@ -46,6 +51,7 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 ## Architecture Principles
 
 ### State Management
+
 - Use **React Context API** exclusively
 - Think in terms of **states**, not just screens
 - Keep state management simple and predictable
@@ -54,6 +60,7 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 - Automatic localStorage sync on every state change
 
 ### Data Persistence
+
 - Use **localStorage** for ALL data persistence
 - Mock data is acceptable and encouraged
 - Handle page refresh scenarios gracefully
@@ -61,12 +68,14 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 - Never lose user data on refresh
 
 ### Component Architecture
+
 - **Feature-based organization** (Restaurant/, History/, Layout/)
 - Reusable UI primitives in `components/ui/`
 - Smart containers separate from presentational components
 - All data structures defined with TypeScript interfaces
 
 ### Data Model Principles
+
 - Design clean, logical data structures
 - Even if mocked, models should make sense
 - Consider entity relationships clearly
@@ -78,6 +87,7 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 ## Code Standards & Conventions
 
 ### TypeScript Rules
+
 - **Strict mode** - always enabled
 - **NO `any` types** (use `unknown` if necessary)
 - Define interfaces for all data structures
@@ -86,6 +96,7 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 - All props must be typed
 
 ### React Patterns
+
 - **Functional components only** - no class components
 - Use **hooks** for state and side effects
 - Keep components small and focused (< 150 lines)
@@ -94,6 +105,7 @@ This is a **frontend-only Point of Sale (POS) interface** focused on:
 - Use proper prop destructuring
 
 ### Component Structure Template
+
 ```typescript
 // Standard component structure
 interface ComponentProps {
@@ -110,12 +122,14 @@ export function Component({ prop1, prop2 }: ComponentProps) {
 ```
 
 ### File Naming Conventions
+
 - Components: **PascalCase** (`CartItem.tsx`, `OrderSidebar.tsx`)
 - Utilities: **camelCase** (`formatCurrency.ts`, `helpers.ts`)
 - Types: **kebab-case** (`sales-types.ts`, `order-types.ts`)
 - Hooks: **camelCase** with `use` prefix (`useRestaurant.ts`)
 
 ### Code Organization
+
 - Organize by **feature/domain**, not by file type
 - Keep related files close together
 - One component per file
@@ -126,12 +140,14 @@ export function Component({ prop1, prop2 }: ComponentProps) {
 ## Git Workflow & Team Standards
 
 ### Branch Structure
+
 - **`main`** - Production (protected, auto-updated from `stg`)
 - **`stg`** - Staging for pre-production testing
 - **`dev`** - Development integration branch
 - **`feature/*`** - Feature branches
 
 ### Branching Workflow
+
 1. Always branch from `dev`
 2. Use format: `feature/descriptive-name`
 3. Create PR to `dev` when ready
@@ -140,6 +156,7 @@ export function Component({ prop1, prop2 }: ComponentProps) {
 6. Delete feature branch after merge
 
 ### Commit Message Convention
+
 Use [Conventional Commits](https://www.conventionalcommits.org/):
 
 - `feat:` - New feature
@@ -154,6 +171,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 **Format**: `type: short description`
 
 **Examples**:
+
 ```bash
 feat: add Inter font for better readability
 fix: correct currency formatting for JOD
@@ -163,6 +181,7 @@ refactor: extract order calculation logic to hook
 ```
 
 ### Git Commands
+
 ```bash
 # Start new feature
 git checkout dev
@@ -182,17 +201,21 @@ git push -u origin feature/your-feature-name
 ## CI/CD Requirements
 
 ### Pre-Merge Checks
+
 All Pull Requests must pass:
+
 - ✅ **ESLint** with max-warnings=0
 - ✅ **TypeScript compilation** (tsc)
 - ✅ **Production build** (pnpm build)
 
 ### Automated Workflows
+
 - PRs to `dev` or `stg` → Run CI checks
 - Push to `stg` → Run CI + Auto-merge to `main`
 - Push to `main` → Deploy to GitHub Pages
 
 ### Quality Gates
+
 - No linting errors or warnings
 - No TypeScript errors
 - Build must succeed
@@ -203,6 +226,7 @@ All Pull Requests must pass:
 ## UI/UX Standards
 
 ### Design Principles
+
 - **Touch-first design** - 44px minimum touch targets
 - **Visual hierarchy** - Clear typography scale (Inter font)
 - **Consistent spacing** - Use scale: p-3, p-4, p-5, p-6
@@ -210,18 +234,21 @@ All Pull Requests must pass:
 - **Responsive feedback** - Hover states, transitions
 
 ### Color Scheme
+
 - **Primary**: Orange (ShadCN color schema)
 - **Neutrals**: Grays for text and backgrounds
 - **Semantic**: Green (success), Red (errors)
 - Ensure sufficient contrast for readability
 
 ### Typography
+
 - **Font**: Inter (import from Google Fonts)
 - **Hierarchy**: text-sm, text-base, text-lg, text-xl, text-2xl, text-3xl
 - **Weights**: normal (400), medium (500), semibold (600), bold (700), extrabold (800)
 - Use extrabold for prices and critical info
 
 ### Tailwind CSS Rules
+
 - Use **utility classes exclusively**
 - No inline styles
 - Group related classes logically
@@ -230,6 +257,7 @@ All Pull Requests must pass:
 - Follow spacing scale: dense (p-3), standard (p-4), comfortable (p-6)
 
 ### Component Design
+
 - Follow ShadCN design patterns
 - Ensure components are responsive
 - Add proper hover and focus states
@@ -241,25 +269,30 @@ All Pull Requests must pass:
 ## User Experience Priorities
 
 ### Cashier Ergonomics
+
 - Minimize click count for common tasks
 - Optimize flow speed
 - Support keyboard shortcuts where appropriate
 - Design for speed and accuracy
 
 ### Real-World Scenarios
+
 Must handle:
+
 - **Page refresh** - No data loss
 - **Interrupted flows** - Save drafts
 - **Accidental navigation** - Confirm before losing work
 - **Error recovery** - Clear error messages
 
 ### User Journey
+
 - Design flows that connect logically
 - Minimize steps to complete tasks
 - Provide clear navigation and feedback
 - Handle edge cases gracefully
 
 ### Data Presentation
+
 - Present information hierarchically
 - Use appropriate visual grouping
 - Make important info prominent
@@ -270,6 +303,7 @@ Must handle:
 ## Development Workflow
 
 ### Before Writing Code
+
 1. Understand the user journey
 2. Consider state management impact
 3. Design data structures (even if mocked)
@@ -277,6 +311,7 @@ Must handle:
 5. Plan for page refresh scenarios
 
 ### When Writing Code
+
 - Write clear, readable code
 - Add comments for complex logic
 - Keep functions small and focused
@@ -285,6 +320,7 @@ Must handle:
 - Test manually in browser
 
 ### When Designing UI
+
 - Prioritize clarity over cleverness
 - Test with real-world scenarios
 - Consider all-day usage
@@ -293,6 +329,7 @@ Must handle:
 - Follow the design system
 
 ### Testing Checklist
+
 - [ ] Feature works as expected
 - [ ] No console errors or warnings
 - [ ] Data persists after page refresh
@@ -307,6 +344,7 @@ Must handle:
 ## Quality Checklist
 
 ### Code Quality
+
 - [ ] TypeScript strict mode compliant
 - [ ] No `any` types used
 - [ ] All props and state typed
@@ -315,6 +353,7 @@ Must handle:
 - [ ] Complex logic has comments
 
 ### Component Quality
+
 - [ ] Component is focused (single responsibility)
 - [ ] Proper prop typing with interfaces
 - [ ] Follows naming conventions
@@ -323,6 +362,7 @@ Must handle:
 - [ ] Proper state management
 
 ### UX Quality
+
 - [ ] Clear visual hierarchy
 - [ ] Appropriate spacing
 - [ ] Touch targets ≥ 44px
@@ -331,6 +371,7 @@ Must handle:
 - [ ] Data persists on refresh
 
 ### Performance
+
 - [ ] Minimal re-renders
 - [ ] No unnecessary useEffect
 - [ ] Efficient context usage
