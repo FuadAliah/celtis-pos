@@ -5,6 +5,7 @@ A modern, frontend-only Point of Sale system built with React, TypeScript, and T
 ## 🚀 Running the Project Locally
 
 ### Prerequisites
+
 - Node.js v18 or higher
 - pnpm (recommended) or npm
 
@@ -44,6 +45,7 @@ pnpm lint
 ## 📋 Key Decisions & Approach
 
 **Tech Stack**
+
 - React 19 + TypeScript for type safety
 - Vite for fast dev server and builds
 - Tailwind CSS for utility-first styling
@@ -51,6 +53,7 @@ pnpm lint
 - localStorage for persistence (no backend)
 
 **Design Choices**
+
 - Touch-first design (44px minimum touch targets)
 - State-first architecture (Active → Draft → Completed)
 - No authentication (as per requirements)
@@ -58,6 +61,7 @@ pnpm lint
 - Mock menu data, single location design
 
 **Performance**
+
 - Small bundle size (no heavy dependencies)
 - Optimized re-renders with Context API
 - Client-side filtering for instant feedback
