@@ -15,18 +15,18 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'push' }}
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
-      
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-      
+
       - name: Merge stg to main
         env:
           REPO_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
@@ -35,4 +35,3 @@ jobs:
           git pull origin main
           git merge origin/stg --no-ff -m "Auto-merge stg to main"
           git push https://x-access-token:${REPO_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
-
