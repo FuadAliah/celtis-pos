@@ -67,7 +67,6 @@ pnpm dev
 ## 📚 Documentation
 
 - **[Development Guidelines](draft-rules.md)** - Git workflow, architecture decisions, and development guidelines
-- **[MCP Setup Guide](mcp-setup.md)** - Configure Model Context Protocol servers in Cursor for enhanced AI assistance
 
 ---
 
