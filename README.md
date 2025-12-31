@@ -35,7 +35,7 @@ pnpm lint
 
 - Menu browsing with categories and search
 - Order management with customizations (sizes, modifiers)
-- Multiple payment methods (Cash, Card, Digital Wallet)
+- Multiple payment methods (Cash, Card)
 - Draft orders - save and resume later
 - Order history with filtering
 - Staff tracking and session management
