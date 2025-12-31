@@ -21,16 +21,6 @@ pnpm dev
 # 3. Open browser at http://localhost:5173
 ```
 
-### Build & Lint
-
-```bash
-# Build for production
-pnpm build
-
-# Check code quality
-pnpm lint
-```
-
 ## ✨ Features
 
 - Menu browsing with categories and search
@@ -57,7 +47,7 @@ pnpm lint
 - Touch-first design (44px minimum touch targets)
 - State-first architecture (Active → Draft → Completed)
 - No authentication (as per requirements)
-- Fixed 10% tax rate, USD currency
+- Fixed 10% tax rate, JOD currency
 - Mock menu data, single location design
 
 **Performance**
