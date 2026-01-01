@@ -2,6 +2,8 @@
 
 A modern, frontend-only Point of Sale system built with React, TypeScript, and Tailwind CSS.
 
+Live Demo: https://fuadaliah.github.io/celtis-pos
+
 ## 🚀 Running the Project Locally
 
 ### Prerequisites
