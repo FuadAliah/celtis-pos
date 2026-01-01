@@ -1,6 +1,6 @@
 # Use of AI Tools in Development Workflow
 
-## How I Use AI Tools
+## How I use Ai tools as part of your workflow
 
 ### 1. `.cursorrules` Configuration
 
