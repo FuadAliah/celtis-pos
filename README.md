@@ -67,6 +67,7 @@ pnpm dev
 ## 📚 Documentation
 
 - **[Development Guidelines](draft-rules.md)** - Git workflow, architecture decisions, and development guidelines
+- **[Use of AI Tools](use-of-ai-tools.md)** - How AI tools (Cursor, .cursorrules, MCP) were integrated into the development workflow
 
 ---
 
